@@ -1,10 +1,21 @@
 import Button from "./components/Button";
 import Result from "./components/Result";
 import { info, question } from "./constrants";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { api } from "./services/api";
 
 function App() {
-  const [description, setDescription] = useState("");
+  //const [description, setDescription] = useState("");
+  const [respostaData, setRespostaData] = useState([])
+
+
+  function getDescription( description ){
+    api.get(description) 
+    .then(response => {
+        setRespostaData(response.data.data)
+    })
+    .catch(error => console.error(error.response))
+  }
 
   return (
     <div className='bg-cyan-100 h-full w-full flex justify-center px-4'>
@@ -26,19 +37,16 @@ function App() {
               <Button
                 key={valor.id}
                 name={valor.name}
-                onClick={() => setDescription(valor.id)}
+                onClick={() => getDescription(valor.description[0])}
               />
             ))}
           </div>
-          <div className="bg-white rounded-md md:w-1/2 w-full pt-2 pl-4 min-h-screen ">
+          <div className="bg-white rounded-md md:w-1/2 w-full pt-2 pl-4 min-h-screen">
             {/* Resultado da descricao obtida a partir de qual botao foi clicado */}
-            {question
-              .filter((elemento) => elemento.id === description)
-              .map((valor) => (
-                <div key={valor.id}>
-                  {valor.description.map((description) => (
-                    <Result key={valor.id} description={description} />
-                  ))}
+            {respostaData
+              ?.declaracoes?.map((valor,index) => (
+                <div key={index} className="flex justify-between">
+                  <Result key={index} id={valor._id} paisOrigem={valor.pais_origem} mes={valor.mes} count={valor.count}/>
                 </div>
               ))}
           </div>
