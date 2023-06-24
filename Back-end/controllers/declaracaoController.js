@@ -28,7 +28,23 @@ exports.getQuestao2 = catchAsync( async(req, res, next) => {
 });
 
 exports.getQuestao3 = catchAsync( async(req, res, next) => {
-    const declaracoes = await Declaracao.aggregate([ { $group: { _id: "$pais_origem", count: { $sum: 1, }, }, }, { $sort: { count: -1 } }, { $limit: 10 } ]
+    const declaracoes = await Declaracao.aggregate([
+        {
+          $group: {
+            _id: "$pais_origem",
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            _id:0,
+            pais_origem: "$_id",
+            count: "$count",
+          },
+        },
+        { $sort: { count: -1 } },
+        { $limit: 10 },
+      ]
     );
     res.status(200).json({
         status: 'success',
@@ -39,7 +55,21 @@ exports.getQuestao3 = catchAsync( async(req, res, next) => {
 });
 
 exports.getQuestao4 = catchAsync( async(req, res, next) => {
-    const declaracoes = await Declaracao.aggregate([ { $group: { _id: "$pais_origem", count: { $sum: 1, }, }, }, ]
+    const declaracoes = await Declaracao.aggregate([
+        {
+          $group: {
+            _id: "$pais_origem",
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            _id:0,
+            pais_origem: "$_id",
+            count: "$count"
+          }
+        }
+      ]
     );
     res.status(200).json({
         status: 'success',
