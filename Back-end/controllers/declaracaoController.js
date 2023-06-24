@@ -80,7 +80,17 @@ exports.getQuestao4 = catchAsync( async(req, res, next) => {
 });
 
 exports.getQuestao5 = catchAsync( async(req, res, next) => {
-    const declaracoes = await Declaracao.aggregate([ { $group: { _id: "$mes", count: { $sum: 1, }, }, }, { $sort: { count: 1 } } ]
+    const declaracoes = await Declaracao.aggregate([
+        { $group: { _id: "$mes", count: { $sum: 1 } } },
+        {
+          $project: {
+            _id:0,
+            mes:"$_id",
+            count:"$count"
+          }
+        },
+        { $sort: { count: 1 } },
+      ]
     );
     res.status(200).json({
         status: 'success',
