@@ -1,7 +1,11 @@
 import React from "react";
 
-export default function Result({description}){
+export default function Result({paisOrigem,mes,count}){
     return(
-        <p>{description}</p>
+        <>
+            <p>{paisOrigem}</p>
+            <p>{mes}</p>
+            <p>{count}</p>
+        </>
     )
 }
