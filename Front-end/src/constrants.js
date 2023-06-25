@@ -38,7 +38,7 @@ export const question = [
     },
     {
         id:"7",
-        name: "Pegando os dados da China (República Popular), dentre os meses de janeiro a abril, qual foi o mês que teve menos importações?",
+        name: "Consultando os dados da China, dentre os meses de janeiro a abril, qual foi o mês que teve menos importações?",
         description: ["/7"]
     },
     {
