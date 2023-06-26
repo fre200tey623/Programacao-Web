@@ -12,7 +12,7 @@ function App() {
 
   /*Quantidade maxima de dados a ser mostrado*/
   const pageSize = 17;
-  
+
   const lastPageIndex = currentPage * pageSize;
   const firstPageIndex = lastPageIndex - pageSize;
 
@@ -24,16 +24,17 @@ function App() {
   );
   const total = Math.ceil(respostaData?.declaracoes?.length / pageSize);
   const numbers = Array.from({ length: total }, (_, i) => i + 1);
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   function getDescription(description) {
-    setIsLoading(true)
+    setIsLoading(true);
     api
       .get(description)
       .then((response) => {
         setRespostaData(response.data.data);
       })
-      .catch((error) => console.error(error.response)).finally(()=>setIsLoading(false))
+      .catch((error) => console.error(error.response))
+      .finally(() => setIsLoading(false));
   }
   function changePage(number) {
     setCurrentPage(number);
@@ -66,22 +67,27 @@ function App() {
           <div className='bg-white rounded-md md:max-w-[500px] w-full px-2 pt-2 min-h-screen relative pb-14'>
             <div className='grid gap-2'>
               {/* Resultado da descricao obtida a partir de qual botao foi clicado */}
-              {!isLoading && records?.map((valor, index) => (
-                <div
-                  key={index}
-                  className=' grid grid-cols-3 border rounded-md gap-6'
-                >
-                  <Result
+              {!isLoading &&
+                records?.map((valor, index) => (
+                  <div
                     key={index}
-                    paisOrigem={valor.pais_origem}
-                    mes={valor.mes}
-                    count={valor.count}
-                  />
+                    className=' grid grid-cols-3 border rounded-md gap-6'
+                  >
+                    <Result
+                      key={index}
+                      paisOrigem={valor.pais_origem}
+                      mes={valor.mes}
+                      count={valor.count}
+                    />
+                  </div>
+                ))}
+              {isLoading && (
+                <div className=' flex gap-4 flex-col'>
+                  {question.map((_, index) => (
+                    <Loading />
+                  ))}
                 </div>
-              ))}
-              {isLoading && <div className="h-16 pt-2 flex gap-10 flex-col">
-              {question.map((_,index)=><Loading/>)}
-            </div>}
+              )}
             </div>
 
             <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -107,12 +113,8 @@ function App() {
                 </ul>
               </nav>
             </div>
-
-            
           </div>
         </div>
-
-            
       </div>
     </div>
   );
