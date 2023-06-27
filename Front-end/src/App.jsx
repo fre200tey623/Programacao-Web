@@ -94,7 +94,7 @@ function App() {
               <nav>
                 <ul className='flex gap-2'>
                   {numbers.map((number, index) => (
-                    <a
+                    <button
                       key={index}
                       className={`${
                         currentPage === number
@@ -108,7 +108,7 @@ function App() {
                       >
                         {number}
                       </li>
-                    </a>
+                    </button>
                   ))}
                 </ul>
               </nav>
