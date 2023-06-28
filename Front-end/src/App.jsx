@@ -78,6 +78,7 @@ function App() {
                       paisOrigem={valor.pais_origem}
                       mes={valor.mes}
                       count={valor.count}
+                      seguro={valor.valor_seguro}
                     />
                   </div>
                 ))}
