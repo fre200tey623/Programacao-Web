@@ -79,6 +79,8 @@ function App() {
                       mes={valor.mes}
                       count={valor.count}
                       seguro={valor.valor_seguro}
+                      media={valor.media}
+                      truncado = {valor.frete_maximo_dolar_truncado}
                     />
                   </div>
                 ))}
