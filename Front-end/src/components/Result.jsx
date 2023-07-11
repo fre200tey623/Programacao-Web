@@ -9,6 +9,7 @@ export default function Result({ paisOrigem, mes, count,seguro,truncado, media }
       {count && <p className=''>{count}</p>}
       {media && <p className=''>{media}</p>}
       {seguro && <p className=''>{seguro}</p>}
+      {seguro && <p className=''>{seguro}</p>}
     </>
   );
 }
