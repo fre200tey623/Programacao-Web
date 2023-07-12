@@ -69,33 +69,23 @@ exports.getQuestao2 = catchAsync( async(req, res, next) => {
 });
 
 exports.getQuestao3 = catchAsync( async(req, res, next) => {
-  const mes = req.query.mes;
   const sql = [
     {
       $group: {
-        _id: {pais_origem: "$pais_origem",mes: "$mes"},        
+        _id: "$pais_origem",        
         count: { $sum: 1 },
       },
     },
     {
       $project: {
         _id:0,
-        pais_origem: "$_id.pais_origem",
-        mes: "$_id.mes",
+        pais_origem: "$_id",
         count: "$count",
       },
-    },
-    {
-      $match: {
-        mes: `2023-0${mes}`
-      }
     },
     { $sort: { count: -1 } },
     { $limit: 10 },
   ];
-  if (!isMesValido(mes)) {
-    sql.splice(2,1);
-  }
   const declaracoes = await Declaracao.aggregate(sql);
   res.status(200).json({
       status: 'success',
