@@ -1,4 +1,6 @@
-export default function Pagination({currentPage,setCurrentPage,pageSize,respostaData,}) {
+import { useEffect } from "react";
+
+export default function Pagination({currentPage,setCurrentPage,pageSize,respostaData}) {
   const total = Math.ceil(respostaData?.declaracoes?.length / pageSize);
   const numbers = Array.from({ length: total }, (_, i) => i + 1);
 
@@ -6,6 +8,10 @@ export default function Pagination({currentPage,setCurrentPage,pageSize,resposta
     setCurrentPage(number);
   }
 
+  useEffect(()=>{
+    console.log("Valor numbers->"+numbers)
+  },[numbers])
+  
   return (
     <>
       <nav>
