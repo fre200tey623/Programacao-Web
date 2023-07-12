@@ -1,8 +1,10 @@
 import Pagination from "./Pagination";
+import ButtonList from "./ButtonList";
 import Result from "./Result";
-import { useState } from "react";
-export default function ResultList({ respostaData }) {
+import { useEffect, useState } from "react";
+export default function ResultList({ respostaData,visivel,setValorFiltro,botaoVisivel,setSelecionado,selecionado}) {
   const [currentPage, setCurrentPage] = useState(1);
+  
 
   const pageSize = 17;
   const lastPageIndex = currentPage * pageSize;
@@ -15,7 +17,10 @@ export default function ResultList({ respostaData }) {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col">
+      <div className='grid grid-cols-5 justify-between pt-2 pb-4 gap-1 md:gap-3'>
+      {(visivel !== true && botaoVisivel) && <ButtonList setValorFiltro={setValorFiltro} setSelecionado={setSelecionado} selecionado={selecionado}/>}
+      </div>
         <div className='flex flex-col gap-3 mb-20'>
           {records?.map((valor, index) => (
             <div
@@ -37,6 +42,8 @@ export default function ResultList({ respostaData }) {
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            respostaData={respostaData}
+            pageSize={pageSize}
           />
         </div>
       </div>
