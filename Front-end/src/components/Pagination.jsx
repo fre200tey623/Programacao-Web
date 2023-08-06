@@ -8,9 +8,6 @@ export default function Pagination({currentPage,setCurrentPage,pageSize,resposta
     setCurrentPage(number);
   }
 
-  useEffect(()=>{
-    console.log("Valor numbers->"+numbers)
-  },[numbers])
   
   return (
     <>
