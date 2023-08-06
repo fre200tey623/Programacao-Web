@@ -97,9 +97,23 @@ export const question = [
         possuiFiltro:false
     }
 
-
-
 ];
+
+export const rotas =[
+    {
+        id:1,
+        name:"Login",
+        destino:"/*",
+        sub_destino:"/"
+    },
+    {
+        id:2,
+        name:"Home",
+        destino:"/home/*",
+        sub_destino:"/home"
+    }
+
+]
 
 
 
