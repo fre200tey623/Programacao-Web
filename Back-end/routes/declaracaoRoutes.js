@@ -7,25 +7,25 @@ const route = express.Router()
 //     .get(declaracaoController.getAllDeclaracoes);
 
 route.route('/1')
-    .get(declaracaoController.getQuestao1);
+    .post(declaracaoController.getQuestao1);
 route.route('/2')
-    .get(declaracaoController.getQuestao2);
+    .post(declaracaoController.getQuestao2);
 route.route('/3')
-    .get(declaracaoController.getQuestao3);
+    .post(declaracaoController.getQuestao3);
 route.route('/4')
-    .get(declaracaoController.getQuestao4);
+    .post(declaracaoController.getQuestao4);
 route.route('/5')
-    .get(declaracaoController.getQuestao5);
+    .post(declaracaoController.getQuestao5);
 route.route('/6')
-    .get(declaracaoController.getQuestao6);
+    .post(declaracaoController.getQuestao6);
 route.route('/7')
-    .get(declaracaoController.getQuestao7);
+    .post(declaracaoController.getQuestao7);
 route.route('/8')
-    .get(declaracaoController.getQuestao8);
+    .post(declaracaoController.getQuestao8);
 route.route('/9')
-    .get(declaracaoController.getQuestao9);
+    .post(declaracaoController.getQuestao9);
 route.route('/10')
-    .get(declaracaoController.getQuestao10);
+    .post(declaracaoController.getQuestao10);
 
 
 module.exports = route
