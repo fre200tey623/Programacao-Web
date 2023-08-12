@@ -22,7 +22,10 @@ const localSchema = new Schema({
         type: String,
         required: true,
     },
-
+    data: {
+        type: Date,
+        default: Date.now(),
+    }
 });
 
 const Local = model('Local', localSchema);
