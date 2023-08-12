@@ -23,7 +23,7 @@ function Home() {
     if(valorDescription!=""){
       setIsLoading(true);
     api
-      .get(valorDescription+valorFiltro)
+      .post("declaracao/"+valorDescription+valorFiltro,{})
       .then((response) => {
         setRespostaData(response.data.data);
       })

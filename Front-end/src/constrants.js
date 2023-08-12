@@ -111,6 +111,12 @@ export const rotas =[
         name:"Home",
         destino:"/home/*",
         sub_destino:"/home"
+    },
+    {
+        id:3,
+        name:"Cadastro",
+        destino:"/cadastro/*",
+        sub_destino:"/cadastro"
     }
 
 ]
