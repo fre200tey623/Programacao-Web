@@ -14,6 +14,10 @@ const localSchema = new Schema({
         type: String,
         required: true,
     },
+    estado: {
+        type: String,
+        required: true,
+    },
     cidade: {
         type: String,
         required: true,

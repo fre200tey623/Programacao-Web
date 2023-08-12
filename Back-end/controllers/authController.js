@@ -41,6 +41,7 @@ exports.signup = catchAsync(async (req, res, next) => {
         email: req.body.email,
         senha: req.body.senha
     });
+    
     const token = signToken(newUsuario._id);
     
     res.status(200).json({
@@ -54,7 +55,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync( async (req, res, next) => {
-    const {email, senha} = req.body;
+    const {email, senha, local} = req.body;
     if (!email && !senha) {
         return next(new AppError("É necessario fornecer o email e senha", 401));
     }
@@ -64,6 +65,18 @@ exports.login = catchAsync( async (req, res, next) => {
     if (!usuario || !await usuario.senhaCorreta(senha, usuario.senha)) {
         return next(new AppError('É necessario fornecer o email e senha corretos', 401));
     }
+
+    if (!local) {
+        return next(new AppError("É necessario fornecer o local", 401));
+    }
+
+    const newlocal = await Local.create({
+        latitude: local.latitude,
+        longitude: local.longitude,
+        pais: local.pais,
+        estado: local.pais,
+        cidade: local.cidade
+    })
     
     const token = signToken(usuario._id);
 
@@ -73,6 +86,7 @@ exports.login = catchAsync( async (req, res, next) => {
             token,
             email: email,
             nome: usuario.nome,
+            local: newlocal
         }
     })
 })
