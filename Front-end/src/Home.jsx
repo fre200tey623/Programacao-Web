@@ -6,6 +6,9 @@ import { api } from "./services/api";
 import SelectBar from "./components/SelectBar";
 import ResultList from "./components/ResultList";
 import PopBar from "./components/PopBar";
+import { FiMap } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { rotas } from "./constrants";
 
 function Home({nomeUsuario}) {
   const [visivel, setVisivel] = useState(true);
@@ -15,7 +18,7 @@ function Home({nomeUsuario}) {
   const [valorDescription,setValorDescripton] = useState("")
   const [selecionado, setSelecionado] = useState("1");
   const [questaoSelecionada,setQuestaoSelecionada] = useState({possuiFiltro:false})
-
+  const navigate = useNavigate()
   useEffect(()=>{
     getDescription(valorDescription);
   },[valorFiltro,valorDescription])
@@ -33,10 +36,13 @@ function Home({nomeUsuario}) {
     }
   }
 
+  console.log('Valor do token de usuário:', localStorage.getItem('token'));
+  console.log('Valor do nome de usuário:', localStorage.getItem('nomeUsuario'));
+
 
   return (
     <div className='h-full w-full flex justify-center px-4 bg-stone-50 relative'>
-      <PopBar nome={nomeUsuario} />
+      <PopBar nome={nomeUsuario} campo={"Estatísticas"} icon={<FiMap/>} onClick={()=>navigate(rotas[3].sub_destino)}/>
       <div className='max-w-5xl w-full'>
         <div className='flex flex-col pt-14 md:pt-14 justify-center w-full'>
           <Title title={info[0].title} />
