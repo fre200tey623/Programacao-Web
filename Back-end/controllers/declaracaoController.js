@@ -88,7 +88,10 @@ exports.getQuestao3 = catchAsync( async(req, res, next) => {
   ];
   const declaracoes = await Declaracao.aggregate(sql);
   res.status(200).json({
-
+    status: 'success',
+    data: {
+        declaracoes
+    }
   });
 });
 
