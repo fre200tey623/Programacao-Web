@@ -7,7 +7,7 @@ import { api } from "./services/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "./assets/images/loading.png";
-export default function Login({setToken}) {
+export default function Login({setToken,setNomeUsurio}) {
   const [email,setEmail] = useState("")
   const [senha,setSenha] = useState("")
   const [isLoading, setIsLoading] = useState(false);
@@ -17,11 +17,20 @@ export default function Login({setToken}) {
       setIsLoading(true);
       api.post("usuario/login",{
         email: email,
-        senha: senha
+        senha: senha,
+        local: {
+          longitude:123,
+          latitude:123,
+          pais:"123",
+          estado:"123",
+          cidade:"123"
+        }
       })
       .then(function (response) {
         console.log(response.data);
         {setToken(response.data.data.token)};
+        {setNomeUsurio(response.data.data.nome)}
+
         setIsLoading(false);
         navigate("/home")
 

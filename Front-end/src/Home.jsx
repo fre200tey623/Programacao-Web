@@ -5,8 +5,9 @@ import { Title } from "./components/Title";
 import { api } from "./services/api";
 import SelectBar from "./components/SelectBar";
 import ResultList from "./components/ResultList";
+import PopBar from "./components/PopBar";
 
-function Home() {
+function Home({nomeUsuario}) {
   const [visivel, setVisivel] = useState(true);
   const [respostaData, setRespostaData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +35,10 @@ function Home() {
 
 
   return (
-    <div className='h-full w-full flex justify-center px-4 bg-stone-50'>
+    <div className='h-full w-full flex justify-center px-4 bg-stone-50 relative'>
+      <PopBar nome={nomeUsuario} />
       <div className='max-w-5xl w-full'>
-        <div className='flex flex-col pt-5 md:pt-14 justify-center w-full'>
+        <div className='flex flex-col pt-14 md:pt-14 justify-center w-full'>
           <Title title={info[0].title} />
 
           <div className='h-12 border  rounded-xl flex justify-center px-2 mb-2 bg-stone-50 border-stone-900'>
