@@ -13,6 +13,12 @@ export default function Login({setToken,setNomeUsuario}) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
 
+  const [latitude,setLatitude] = useState()
+  const [longitude,setLongitude] = useState()
+  const [pais,setPais] = useState("")
+  const [cidade,setCidade] = useState("")
+  const [estado,setEstado] = useState("")
+
     // function handleClick(){
     //   setIsLoading(true);
     //   api.post("usuario/login",{
@@ -40,21 +46,37 @@ export default function Login({setToken,setNomeUsuario}) {
     //     setIsLoading(false);
     //   });
     // }
+
+    useEffect(()=>{
+      api.get("https://ipapi.co/json")
+    .then((response) => {
+        //console.log(response.data);
+        setLatitude(response.data.latitude),
+        setLongitude(response.data.longitude),
+        setPais(response.data.country_name),
+        setCidade(response.data.city),
+        setEstado(response.data.region)
+      }).catch((error)=>{
+        console.log(error)})
+    },[])
+
     function handleClick(){
+
+
       setIsLoading(true);
     api.post("usuario/login", {
       email: email,
       senha: senha,
       local: {
-        longitude: 231,
-        latitude: 231,
-        pais: "231",
-        estado: "231",
-        cidade: "231",
+          latitude:latitude,
+          longitude:longitude,
+          pais: pais,
+          cidade: cidade,
+          estado: estado 
+          
       },
     })
     .then(function (response) {
-      console.log(response.data);
 
       // Armazena os valores no localStorage após o login bem-sucedido
       localStorage.setItem('token', response.data.data.token);
@@ -72,9 +94,6 @@ export default function Login({setToken,setNomeUsuario}) {
       setIsLoading(false);
     });
     }
-
-    console.log("localStorage.getItem->"+localStorage.getItem('nomeUsuario'))
-    console.log("localStorage.getToken->"+localStorage.getItem('token'))
     
 
   return (
