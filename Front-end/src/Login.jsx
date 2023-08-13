@@ -7,43 +7,79 @@ import { api } from "./services/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "./assets/images/loading.png";
-export default function Login({setToken,setNomeUsurio}) {
+export default function Login({setToken,setNomeUsuario}) {
   const [email,setEmail] = useState("")
   const [senha,setSenha] = useState("")
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
 
+    // function handleClick(){
+    //   setIsLoading(true);
+    //   api.post("usuario/login",{
+    //     email: email,
+    //     senha: senha,
+    //     local: {
+    //       longitude:231,
+    //       latitude:231,
+    //       pais:"231",
+    //       estado:"231",
+    //       cidade:"231"
+    //     }
+    //   })
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     {setToken(response.data.data.token)};
+    //     {setNomeUsurio(response.data.data.nome)}
+
+    //     setIsLoading(false);
+    //     navigate("/home")
+
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     setIsLoading(false);
+    //   });
+    // }
     function handleClick(){
       setIsLoading(true);
-      api.post("usuario/login",{
-        email: email,
-        senha: senha,
-        local: {
-          longitude:123,
-          latitude:123,
-          pais:"123",
-          estado:"123",
-          cidade:"123"
-        }
-      })
-      .then(function (response) {
-        console.log(response.data);
-        {setToken(response.data.data.token)};
-        {setNomeUsurio(response.data.data.nome)}
+    api.post("usuario/login", {
+      email: email,
+      senha: senha,
+      local: {
+        longitude: 231,
+        latitude: 231,
+        pais: "231",
+        estado: "231",
+        cidade: "231",
+      },
+    })
+    .then(function (response) {
+      console.log(response.data);
 
-        setIsLoading(false);
-        navigate("/home")
+      // Armazena os valores no localStorage após o login bem-sucedido
+      localStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('nomeUsuario', response.data.data.nome);
 
-      })
-      .catch(function (error) {
-        console.log(error);
-        setIsLoading(false);
-      });
+      // Configura os estados com os valores obtidos
+      {setToken(response.data.data.token)}
+      {setNomeUsuario(response.data.data.nome)}
+
+      setIsLoading(false);
+      navigate("/home");
+    })
+    .catch(function (error) {
+      console.log(error);
+      setIsLoading(false);
+    });
     }
 
+    console.log("localStorage.getItem->"+localStorage.getItem('nomeUsuario'))
+    console.log("localStorage.getToken->"+localStorage.getItem('token'))
+    
+
   return (
-    <div className='h-screen w-full flex justify-center items-center  bg-emerald-200 '>
-      <div className=' flex gap-16 bg-white rounded-lg px-12 py-6 h-3/4 drop-shadow-lg mx-0 md:mx-4'>
+    <div className='h-screen w-full flex justify-center items-center '>
+      <div className=' flex gap-16 bg-white rounded-lg px-12 py-6 h-3/4 mx-0 md:mx-4'>
         <div className="flex flex-col h-full gap-10 pt-10  min-w-[278px]">
           <div className='flex justify-center '>
             <h1 className='text-4xl'>Login</h1>
@@ -68,7 +104,7 @@ export default function Login({setToken,setNomeUsurio}) {
             </div>
           </div>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <img src={imagemFundo} className='h-full py-6' />
         </div>
       </div>

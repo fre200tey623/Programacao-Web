@@ -9,15 +9,15 @@ import Statistics from './Statistics';
 const App = () => {
 
   const [token,setToken] = useState("");
-  const [NomeUsurio,setNomeUsurio] = useState("")
+  const [NomeUsuario,setNomeUsuario] = useState("")
 
   return (
     <Router>
       <Routes>
-        <Route path={rotas[0].destino} element={<Login setToken={setToken} setNomeUsurio={setNomeUsurio}/>} />
+        <Route path={rotas[0].destino} element={<Login setToken={setToken} setNomeUsuario={setNomeUsuario}/>} />
         <Route path={rotas[2].destino} element={<Cadastro />} />
-        { token != ""?<Route path={rotas[1].destino} element={<Home nomeUsuario = {NomeUsurio}/>}/>:null}
-        <Route path={rotas[3].destino} element={<Statistics />}/>
+        { localStorage.getItem('token') != ""?<Route path={rotas[1].destino} element={<Home nomeUsuario = {NomeUsuario}/>}/>:null}
+        <Route path={rotas[3].destino} element={<Statistics nomeUsuario={NomeUsuario} />}/>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>

@@ -33,8 +33,8 @@ function Cadastro(){
     }
   
     return (
-        <div className='h-screen w-full flex justify-center items-center  bg-emerald-200 '>
-          <div className=' flex gap-16 bg-white rounded-lg px-12 py-6 h-3/4 drop-shadow-lg mx-0 md:mx-4'>
+        <div className='h-screen w-full flex justify-center items-center  '>
+          <div className=' flex gap-16 bg-white rounded-lg px-12 py-6 h-3/4  mx-0 md:mx-4'>
             <div className="flex flex-col h-full gap-10 pt-10 min-w-[278px]">
               <div className='flex justify-center '>
                 <h1 className='text-4xl'>Cadastro</h1>
