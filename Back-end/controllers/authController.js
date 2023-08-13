@@ -74,7 +74,7 @@ exports.login = catchAsync( async (req, res, next) => {
         latitude: local.latitude,
         longitude: local.longitude,
         pais: local.pais,
-        estado: local.pais,
+        estado: local.estado,
         cidade: local.cidade
     })
     
