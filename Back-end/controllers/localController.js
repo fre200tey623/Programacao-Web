@@ -1,7 +1,7 @@
 const Local = require("./../models/localModel");
 const catchAsync = require("./../utils/catchAsync");
 
-exports.getLocais = catchAsync( async(req, res, next) => {
+exports.getLocaisAgrupado = catchAsync( async(req, res, next) => {
     const allLocais = await Local.aggregate([
         {
           $group: {
@@ -23,4 +23,16 @@ exports.getLocais = catchAsync( async(req, res, next) => {
             local: allLocais,
         }
     });
+})
+
+exports.getLocais = catchAsync( async(req, res, next) => {
+  const allLocais = await Local.find({});
+  const quantidade = allLocais.length
+  res.status(200).json({
+      status: 'success',
+      data: {
+          local: allLocais,
+          quantidade
+      }
+  });
 })
