@@ -121,8 +121,8 @@ export const rotas =[
     {
         id:4,
         name:"Statistics",
-        destino:"/statistics/*",
-        sub_destino:"/statistics"
+        destino:"/home/statistics/*",
+        sub_destino:"/home/statistics"
     }
 
 ]
