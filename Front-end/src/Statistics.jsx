@@ -7,11 +7,13 @@ import randomColor from "randomcolor";
 import { FiHome } from "react-icons/fi";
 import { rotas } from "./constrants";
 import { useNavigate } from "react-router-dom";
+//import Loading from "./components/Loading";
 
 export default function Statistics() {
 
     const [locais, setLocais] = useState([])
     const [locais2, setLocais2] = useState()
+    //const [isLoading,setIsLoading] = useState(false)
 
     const navigate = useNavigate()
 
@@ -21,23 +23,21 @@ export default function Statistics() {
         const storedNomeUsuario = localStorage.getItem('nomeUsuario');
         setNomeUsuario(storedNomeUsuario);
 
-
     }, []);
 
 
     useEffect(() => {
         api.get("local/agrupado")
             .then((response) => {
-                //console.log(response.data.data.local)
                 setLocais(response.data.data.local)
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error)           
             })
         api.get("local")
             .then((response) => {
-                //console.log(response.data.data.local)
                 setLocais2(response.data.data.local)
+                
             })
             .catch((error) => {
                 console.log(error)
@@ -54,7 +54,7 @@ export default function Statistics() {
             },
         ],
     });
-    console.log(locais)
+   
     useEffect(() => {
 
         const uniqueDataValues = locais.length;
@@ -82,9 +82,10 @@ export default function Statistics() {
                     <p className="text-xl font-semibold">Numeros de acessos: {locais2?.length}</p>
                 </div>
 
-                <div style={{ width: 400 }}>
+                 <div style={{ width: 400 }}>
                     <Pie data={userData} />
                 </div>
+
 
             </div>
 
