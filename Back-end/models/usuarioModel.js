@@ -21,7 +21,7 @@ const usuarioSchema = new Schema({
 });
 
 usuarioSchema.pre('save', async function(next) {
-    this.senha = await bcrypt.hash(this.senha, 13);
+    this.senha = await bcrypt.hash(this.senha, 10);
     next();
 });
 
