@@ -21,20 +21,20 @@ function Cadastro(){
         senha: senha,
         nome: nome
       })
-      .then(function (response) {
+      .then(function() {
         setIsLoading(false);
         navigate("/")
 
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function() {
+        alert("Não foi possivel criar o usuario")
       });
     }
   
     return (
         <div className='h-screen w-full flex justify-center items-center  '>
           <div className=' flex gap-16 bg-white rounded-lg px-12 py-6 h-3/4  mx-0 md:mx-4'>
-            <div className="flex flex-col h-full gap-10 pt-10 border border-gray-400 rounded-3xl min-w-[360px]">
+            <div className="flex flex-col h-12 gap-10 pt-10 min-h-[450px] border border-gray-400 rounded-3xl min-w-[360px] mt-20">
               <div className='flex justify-center '>
                 <h1 className='text-4xl'>Cadastro</h1>
               </div>
@@ -62,8 +62,8 @@ function Cadastro(){
                 </div>
               </div>
             </div>
-            <div className="hidden md:block">
-              <img src={imagemFundo} className='h-full py-6' />
+            <div className="hidden lg:block ">
+              <img src={imagemFundo} className='h-full py-6 max-h-[560px]' />
             </div>
           </div>
         </div>
