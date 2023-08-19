@@ -47,7 +47,7 @@ export default function Statistics() {
 
     const [userData, setUserData] = useState({
 
-        labels: locais.map((data) => data.estado),
+        labels: locais.map((data) => data.cidade),
         datasets: [
             {
                 data: locais.map((data) => parseInt(data.count)),
@@ -59,9 +59,8 @@ export default function Statistics() {
 
         const uniqueDataValues = locais.length;
         const generatedColors = randomColor({ count: uniqueDataValues });
-        console.log(locais)
         setUserData({
-            labels: locais.map((data) => data.estado),
+            labels: locais.map((data) => data.cidade),
             datasets: [
                 {
                     data: locais.map((data) => parseInt(data.count)),
@@ -75,14 +74,14 @@ export default function Statistics() {
         <div className="flex justify-center items-center flex-col gap-6 relative">
             <div className=""><PopBar nome={nomeUsuario} campo={"Home"} icon={<FiHome />} onClick={() => navigate(rotas[1].sub_destino)} /></div>
             <div className="pt-16">
-                <div className="flex justify-center flex-col items-center gap-1">
+                <div className="flex justify-center flex-col items-center gap-2">
                     <div>
                         <h1 className="text-3xl font-semibold">&#128202; Estatísticas de Acesso</h1>
                     </div>
                     <p className="text-xl font-semibold">Numeros de acessos: {locais2?.length}</p>
                 </div>
 
-                 <div style={{ width: 400 }}>
+                 <div style={{ width: 400 }} className="mt-10">
                     <Pie data={userData} />
                 </div>
 
