@@ -36,8 +36,6 @@ function Home({nomeUsuario}) {
     }
   }
 
-  console.log('Valor do token de usuário:', localStorage.getItem('token'));
-  console.log('Valor do nome de usuário:', localStorage.getItem('nomeUsuario'));
 
 
   return (
