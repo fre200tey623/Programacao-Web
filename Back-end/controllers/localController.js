@@ -5,14 +5,14 @@ exports.getLocaisAgrupado = catchAsync( async(req, res, next) => {
     const allLocais = await Local.aggregate([
         {
           $group: {
-            _id: "$estado",
+            _id: "$cidade",
             count: { $sum: 1 },
           },
         },
         {
           $project: {
             _id:0,
-            estado: "$_id",
+            cidade: "$_id",
             count: "$count"
           }
         }
