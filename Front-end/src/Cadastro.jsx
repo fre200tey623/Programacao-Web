@@ -26,8 +26,9 @@ function Cadastro(){
         navigate("/")
 
       })
-      .catch(function() {
+      .catch(function(error) {
         alert("Não foi possivel criar o usuario")
+        console.log(error)
       });
     }
   
