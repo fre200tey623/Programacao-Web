@@ -24,10 +24,10 @@ export default function Login({ setToken, setNomeUsuario }) {
       .get("https://ipapi.co/json")
       .then((response) => {
         setLatitude(response.data.latitude),
-          setLongitude(response.data.longitude),
-          setPais(response.data.country_name),
-          setCidade(response.data.city),
-          setEstado(response.data.region);
+        setLongitude(response.data.longitude),
+        setPais(response.data.country_name),
+        setCidade(response.data.city),
+        setEstado(response.data.region);
       })
       .catch((error) => {
         console.log(error);
@@ -58,8 +58,9 @@ export default function Login({ setToken, setNomeUsuario }) {
         setIsLoading(false);
         navigate("/home");
       })
-      .catch(function() {
+      .catch(function(error) {
         alert("Email ou Senha esta incorreto")
+        console.log(error)
         setIsLoading(false);
       });
   }
