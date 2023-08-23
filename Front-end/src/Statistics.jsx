@@ -7,6 +7,9 @@ import randomColor from "randomcolor";
 import { FiHome } from "react-icons/fi";
 import { rotas } from "./constrants";
 import { useNavigate } from "react-router-dom";
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 // import L from 'leaflet';
 // import 'leaflet/dist/leaflet.css';
 // import Maps from "./components/Maps";
@@ -94,6 +97,12 @@ export default function Statistics() {
             ],
         });
     }, [locais]);
+    const DefaultIcon = L.icon({
+        iconUrl: icon,
+        shadowUrl: iconShadow,
+      });
+      
+      L.Marker.prototype.options.icon = DefaultIcon;
 
     return (
         <div className="flex justify-center items-center flex-col gap-6 relative">
