@@ -34,6 +34,16 @@ export default function Login({ setToken, setNomeUsuario }) {
       });
   }, []);
 
+  function entrarVisitante(){
+    localStorage.setItem("token", setToken );
+        localStorage.setItem("nomeUsuario", "Visitante");
+
+        {setToken("Visitante");}
+        {setNomeUsuario("Visitante");}
+
+        navigate("/home");
+  }
+
   function handleClick() {
     setIsLoading(true);
     api
@@ -103,6 +113,9 @@ export default function Login({ setToken, setNomeUsuario }) {
                   <u>Cadastre agora</u>
                 </Link>
               </p>
+            </div>
+            <div className="flex justify-center ">
+              <button  onClick={entrarVisitante}><u className="text-sm text-emerald-600 hover:text-emerald-300">Entrar como visitante</u></button>
             </div>
           </div>
         </div>
