@@ -94,17 +94,17 @@ export default function Login({ setToken, setNomeUsuario }) {
             <div className='flex flex-col gap-3'>
               <Placeholder
                 type={"text"}
-                placeholder={"usuario"}
+                placeholder={"email"}
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <div className="flex border border-gray-400 rounded-xl justify-between pr-2">
+              <div className="flex border border-gray-400 rounded-xl justify-between pr-2 bg-white">
                 <Placeholder
                   type={visivel? "text":"password"}
                   placeholder={"senha"}
                   onChange={(event) => setSenha(event.target.value)}
                   className="password w-full"
                 />
-                <button onClick={mudarVisibilidade}>{visivel?<AiOutlineEye/>:<AiOutlineEyeInvisible/>}</button>
+                <button onClick={mudarVisibilidade}>{visivel?<AiOutlineEye className="text-black"/>:<AiOutlineEyeInvisible className="text-black"/>}</button>
               </div>
               <Button
                 name={isLoading ? "Autenticando" : "Confirmar"}

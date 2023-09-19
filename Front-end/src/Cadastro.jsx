@@ -48,15 +48,15 @@ function Cadastro(){
               <div className='flex flex-col gap-3 mx-12'>
                 <div className='flex flex-col gap-3'>
                 <Placeholder type={"text"} placeholder={"nome"} onChange={(event)=>setNome(event.target.value)}/>
-                <Placeholder type={"text"} placeholder={"usuario"} onChange={(event)=>setEmail(event.target.value)}/>
-                <div className="flex border border-gray-400 rounded-xl justify-between pr-2">
+                <Placeholder type={"text"} placeholder={"email"} onChange={(event)=>setEmail(event.target.value)}/>
+                <div className="flex border border-gray-400 rounded-xl justify-between pr-2 bg-white">
                 <Placeholder
                   type={visivel? "text":"password"}
                   placeholder={"senha"}
                   onChange={(event) => setSenha(event.target.value)}
                   className="password w-full"
                 />
-                <button onClick={mudarVisibilidade}>{visivel?<AiOutlineEye/>:<AiOutlineEyeInvisible/>}</button>
+                <button onClick={mudarVisibilidade}>{visivel?<AiOutlineEye className="text-black"/>:<AiOutlineEyeInvisible className="text-black"/>}</button>
               </div>
                 
                 <Button name={isLoading ? "Autenticando" : "Confirmar"}
