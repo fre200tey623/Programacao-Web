@@ -127,5 +127,14 @@ export const rotas =[
 
 ]
 
+export const themeLight = {
+    backgroundColor: 'white',
+    textColor: 'black',
+  };
+
+export const themeDark = {
+  backgroundColor: '#27242C',
+  textColor: 'white',
+};
 
 

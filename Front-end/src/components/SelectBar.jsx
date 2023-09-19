@@ -14,7 +14,7 @@ export default function SelectBar({question,getDescription,visivel,setVisivel,se
       >
         {visivel && <option value=''>Selecione uma pergunta</option>}
         {question.map((valor) => (
-          <option key={valor.id} value={valor.id}>{valor.name}</option>
+          <option className="text-red-950" key={valor.id} value={valor.id}>{valor.name}</option>
         ))}
       </select>
       

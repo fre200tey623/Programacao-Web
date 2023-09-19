@@ -12,3 +12,27 @@ button {
   font-family: 'Inter', sans-serif;
 }
 
+.modoClaro{
+  background-color: white;
+}
+
+.modoEscuro{
+  background-color: #363637;
+}
+
+option{
+  color: #FFFFFF !important;
+  background-color: #27242C;
+}
+
+.password{
+  border: none;
+}
+
+.estatisticas{
+  width: auto
+}
+
+.mapa{
+  width: 100%;
+}

@@ -10,7 +10,7 @@ import { FiMap } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { rotas } from "./constrants";
 
-function Home({nomeUsuario}) {
+function Home({nomeUsuario,theme}) {
   const [visivel, setVisivel] = useState(true);
   const [respostaData, setRespostaData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,13 +39,13 @@ function Home({nomeUsuario}) {
 
 
   return (
-    <div className='h-full w-full flex justify-center px-4 bg-stone-50 relative'>
-      <PopBar nome={nomeUsuario} campo={"Estatísticas"} icon={<FiMap/>} onClick={()=>navigate(rotas[3].sub_destino)}/>
+    <div className='h-full w-full flex justify-center px-4 relative'>
+      <PopBar nome={nomeUsuario} campo={"Estatísticas"} icon={<FiMap/>} onClick={()=>navigate(rotas[3].sub_destino)} theme={theme}/>
       <div className='max-w-5xl w-full'>
         <div className='flex flex-col pt-14 md:pt-14 justify-center w-full'>
           <Title title={info[0].title} />
 
-          <div className='h-12 border  rounded-xl flex justify-center px-2 mb-2 bg-stone-50 border-stone-900'>
+          <div className='h-12 border  rounded-xl flex justify-center px-2 mb-2 '>
             <SelectBar
               question={question}
               getDescription={setValorDescripton}
